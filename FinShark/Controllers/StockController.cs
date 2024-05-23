@@ -38,4 +38,6 @@ public class StockController : ControllerBase
 
         return Ok(stock.ToStockDto());
     }
+
+    //[HttpPost]
 }
