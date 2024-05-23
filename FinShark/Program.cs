@@ -1,4 +1,7 @@
 
+using FinShark.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FinShark;
 
 public class Program
@@ -10,9 +13,11 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+            opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         var app = builder.Build();
 
